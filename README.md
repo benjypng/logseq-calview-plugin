@@ -6,6 +6,10 @@ This plugin offers a calendar from within Logseq that captures your blocks with 
 - Weekly
 - Monthly
 
+When used with [logseq-datenlp-plugin](https://github.com/hkgnp/logseq-datenlp-plugin) and [logseq-recurrence-plugin](https://github.com/hkgnp/logseq-recurrence-plugin):
+
+![](/screenshots/demo.gif)
+
 # Usage
 
 Events are picked up by the calendar as long as they have block properties containing `start-time` and `end-time`, and times must be in 24-hr format. When used together with the [logseq-datenlp-plugin](https://github.com/hkgnp/logseq-datenlp-plugin), you can trigger the appropriate syntax by turning on `semi auto-parsing` and triggering it by including `@from` in your sentence. E.g. `Go to the gym @from 8am to 12pm`. This will automatically produce the below template:
