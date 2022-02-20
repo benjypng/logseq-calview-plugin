@@ -6,7 +6,7 @@ This plugin offers a calendar from within Logseq that captures your blocks with 
 - Weekly
 - Monthly
 
-When used with [logseq-datenlp-plugin](https://github.com/hkgnp/logseq-datenlp-plugin) and [logseq-recurrence-plugin](https://github.com/hkgnp/logseq-recurrence-plugin):
+When used with [logseq-datenlp-plugin](https://github.com/hkgnp/logseq-datenlp-plugin) and [logseq-recurrence-plugin](https://github.com/hkgnp/logseq-recurrence-plugin), you can do something like this:
 
 ![](/screenshots/demo.gif)
 
