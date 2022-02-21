@@ -14,7 +14,8 @@ const getCalTimeFormat = (journalDayInNumber: number) => {
   );
 };
 
-const App = () => {
+const App = (props) => {
+  const [query, setQuery] = useState(props.query);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [schedulerData, setSchedulerData] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -117,7 +118,7 @@ const App = () => {
 
   useEffect(() => {
     mapQueryData();
-  }, [schedulerData.length]);
+  }, [schedulerData.length, query]);
 
   const refreshAppt = () => {
     mapQueryData();

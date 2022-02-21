@@ -30,11 +30,20 @@ const main = async () => {
   }
 
   logseq.provideModel({
-    show() {
+    async show() {
+      const query = await logseq.DB.datascriptQuery(`[
+        :find (pull ?b [*])
+        :where
+               [?b :block/parent ?parent]
+               [?b :block/properties ?p]
+               [(get ?p :start-time) ?ty]
+               (not [(get ?p :template)])
+      ]`);
+
       logseq.showMainUI();
       ReactDOM.render(
         <React.StrictMode>
-          <App />
+          <App query={query} />
         </React.StrictMode>,
         document.getElementById('app')
       );
