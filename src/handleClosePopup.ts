@@ -10,4 +10,10 @@ export const handleClosePopup = () => {
     },
     false
   );
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('.calWrapper')) {
+      logseq.hideMainUI({ restoreEditingCursor: true });
+    }
+  });
 };

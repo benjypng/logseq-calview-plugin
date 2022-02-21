@@ -126,7 +126,7 @@ const App = (props) => {
 
   return (
     <Paper>
-      <div className="flex justify-center overflow-scroll">
+      <div className="flex justify-center overflow-scroll calWrapper">
         <div
           className={`absolute top-3 right-0 ${
             props.preferredThemeMode === 'dark' ? 'bg-black' : 'bg-white'
