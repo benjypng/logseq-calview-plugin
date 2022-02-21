@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './App.css';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const main = async () => {
   console.log('logseq-calview-plugin loaded.');
@@ -40,10 +41,21 @@ const main = async () => {
                (not [(get ?p :template)])
       ]`);
 
+      const userConfigs = await logseq.App.getUserConfigs();
+      const preferredThemeMode = userConfigs.preferredThemeMode;
+
+      const setTheme = createTheme({
+        palette: {
+          mode: preferredThemeMode,
+        },
+      });
+
       logseq.showMainUI();
       ReactDOM.render(
         <React.StrictMode>
-          <App query={query} />
+          <ThemeProvider theme={setTheme}>
+            <App query={query} preferredThemeMode={preferredThemeMode} />
+          </ThemeProvider>
         </React.StrictMode>,
         document.getElementById('app')
       );

@@ -15,7 +15,7 @@ const getCalTimeFormat = (journalDayInNumber: number) => {
 };
 
 const App = (props) => {
-  const [query, setQuery] = useState(props.query);
+  const [query] = useState(props.query);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [schedulerData, setSchedulerData] = useState([]);
   const [loaded, setLoaded] = useState(false);
@@ -128,9 +128,9 @@ const App = (props) => {
     <Paper>
       <div className="flex justify-center overflow-scroll">
         <div
-          className={`absolute top-3 right-0 bg-white rounded-lg p-3 ${
-            !fullScreen ? 'w-1/2' : 'w-full'
-          } border
+          className={`absolute top-3 right-0 ${
+            props.preferredThemeMode === 'dark' ? 'bg-black' : 'bg-white'
+          } rounded-lg p-3 ${!fullScreen ? 'w-1/2' : 'w-full'} border
 `}
         >
           <div className="flex flex-row justify-between">
