@@ -38,7 +38,7 @@ const App = () => {
       uuid: i[0].uuid.$uuid$,
       startTime: i[0].properties['start-time'],
       endTime: i[0].properties['end-time'],
-      parentId: i[0].parent.id,
+      parentId: i[0].page.id,
       content: i[0].content.slice(0, i[0].content.indexOf('\nstart-time')),
     }));
 
