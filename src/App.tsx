@@ -128,7 +128,7 @@ const App = (props) => {
     <div className="flex justify-center overflow-scroll ">
       <Paper>
         <div
-          className={`calWrapper absolute top-3 right-0 ${
+          className={`calWrapper absolute top-0 right-0 ${
             props.preferredThemeMode === 'dark' ? 'bg-black' : 'bg-white'
           } rounded-lg p-3 ${!fullScreen ? 'w-1/2' : 'w-full'} border
 `}
