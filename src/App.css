@@ -427,8 +427,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .absolute {
   position: absolute;
 }
-.top-3 {
-  top: 0.75rem;
+.top-0 {
+  top: 0px;
 }
 .right-0 {
   right: 0px;
