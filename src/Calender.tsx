@@ -19,7 +19,7 @@ const Calendar = (props: {
   currentDateChange: any;
 }) => {
   const { schedulerData, currentDate, currentDateChange } = props;
-  const { startDayHour, endDayHour } = logseq.settings.startEndHour;
+  const { startDayHour, endDayHour } = logseq.settings;
 
   return (
     <Scheduler data={schedulerData}>
