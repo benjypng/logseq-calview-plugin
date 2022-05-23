@@ -1,15 +1,18 @@
 import React from "react";
 
 const getCalTimeFormat = (journalDayInNumber: number) => {
-  const journalDay = journalDayInNumber.toString();
-
-  return (
-    journalDay.slice(0, 4) +
-    "-" +
-    journalDay.slice(4, 6) +
-    "-" +
-    journalDay.slice(6)
-  );
+  if (journalDayInNumber) {
+    const journalDay = journalDayInNumber.toString();
+    return (
+      journalDay.slice(0, 4) +
+      "-" +
+      journalDay.slice(4, 6) +
+      "-" +
+      journalDay.slice(6)
+    );
+  } else {
+    return `Error: Events found in non-journal pages.`;
+  }
 };
 
 const getTitle = (content: string, pageName: string, uuid: string) => {
@@ -75,6 +78,10 @@ export async function mapQueryData() {
   let apptsArr = [];
   for (const r of newQueryArr) {
     const journalPage = await logseq.Editor.getPage(r.parentId);
+    if (journalPage["journal?"] === false) {
+      return;
+    }
+
     // Construct all day
     if (r.startTime === "all-day") {
       const payload = {
