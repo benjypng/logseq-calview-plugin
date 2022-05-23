@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import Calendar from "./Calender";
 import { clickToBlock, mapQueryData } from "./utils";
 
-const App = (props: { preferredThemeMode: string }) => {
+const App = (props: { state: boolean; preferredThemeMode: string }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [schedulerData, setSchedulerData] = useState([]);
   const [fullScreen, setFullScreen] = useState(false);
@@ -16,16 +16,17 @@ const App = (props: { preferredThemeMode: string }) => {
     clickToBlock();
   }, []);
 
-  useEffect(() => {
-    (async function () {
-      const apptsArr = await mapQueryData();
-      setSchedulerData(apptsArr);
-    })();
-  });
-
-  const refreshAppt = async () => {
+  async function getScheduleData() {
     const apptsArr = await mapQueryData();
     setSchedulerData(apptsArr);
+  }
+
+  useEffect(() => {
+    getScheduleData();
+  }, [props.state]);
+
+  const refreshAppt = () => {
+    getScheduleData();
   };
 
   const toggleFullScreen = () => {

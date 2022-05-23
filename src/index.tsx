@@ -27,6 +27,7 @@ const main = async () => {
     );
   }, 1000);
 
+  let state = false;
   logseq.provideModel({
     async show() {
       const setTheme = createTheme({
@@ -35,10 +36,20 @@ const main = async () => {
         },
       });
 
+      if (state === false) {
+        state = true;
+      } else {
+        state = false;
+      }
+      console.log(state);
+
       ReactDOM.render(
         <React.StrictMode>
           <ThemeProvider theme={setTheme}>
-            <App preferredThemeMode={logseq.settings.preferredThemeMode} />
+            <App
+              state={state}
+              preferredThemeMode={logseq.settings.preferredThemeMode}
+            />
           </ThemeProvider>
         </React.StrictMode>,
         document.getElementById("app")
