@@ -27,6 +27,7 @@ const main = async () => {
     );
   }, 1000);
 
+  // Hackish way to get calendar to re-render when there are new events - Part 1
   let state = false;
   logseq.provideModel({
     async show() {
@@ -36,12 +37,12 @@ const main = async () => {
         },
       });
 
+      // Hackish way to get calendar to re-render when there are new events - Part 2
       if (state === false) {
         state = true;
       } else {
         state = false;
       }
-      console.log(state);
 
       ReactDOM.render(
         <React.StrictMode>

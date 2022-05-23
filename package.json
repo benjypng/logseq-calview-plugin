@@ -5,7 +5,7 @@
     "icon": "./icon.svg"
   },
   "name": "logseq-calview-plugin",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "",
   "main": "dist/index.html",
   "targets": {
