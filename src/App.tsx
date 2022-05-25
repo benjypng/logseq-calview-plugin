@@ -8,6 +8,9 @@ const App = (props: { state: boolean; preferredThemeMode: string }) => {
   const [schedulerData, setSchedulerData] = useState([]);
   const [fullScreen, setFullScreen] = useState(false);
   const [widthValue, setWidthValue] = useState(logseq.settings!.defaultWidth);
+  const [, updateState] = React.useState();
+  //@ts-ignore
+  const forceUpdate = React.useCallback(() => updateState({}), []);
 
   const currentDateChange = (currentDate: Date) => {
     setCurrentDate(currentDate);
@@ -27,6 +30,7 @@ const App = (props: { state: boolean; preferredThemeMode: string }) => {
   }, [props.state]);
 
   const refreshAppt = () => {
+    forceUpdate();
     getScheduleData();
   };
 

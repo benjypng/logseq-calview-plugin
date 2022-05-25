@@ -67,15 +67,24 @@ export async function mapQueryData() {
                (not [(get ?p :template)])
       ]`);
 
-  const newQueryArr = query
-    .filter((i) => i[0]["journal?"] === true)
-    .map((i: any) => ({
-      uuid: i[0].uuid.$uuid$,
-      startTime: i[0].properties["start-time"],
-      endTime: i[0].properties["end-time"],
-      parentId: i[0].page.id,
-      content: i[0].content.slice(0, i[0].content.indexOf("\nstart-time")),
-    }));
+  let newQueryArr = [];
+
+  for (let i of query) {
+    const uuid = i[0]["uuid"]["$uuid$"];
+    const blk = await logseq.Editor.getBlock(uuid, {
+      includeChildren: true,
+    });
+    if (blk.page.journalDay) {
+      const payload = {
+        uuid: i[0].uuid.$uuid$,
+        startTime: i[0].properties["start-time"],
+        endTime: i[0].properties["end-time"],
+        parentId: i[0].page.id,
+        content: i[0].content.slice(0, i[0].content.indexOf("\nstart-time")),
+      };
+      newQueryArr.push(payload);
+    }
+  }
 
   let apptsArr = [];
   for (const r of newQueryArr) {
