@@ -32,6 +32,13 @@ const App = (props: { state: boolean; preferredThemeMode: string }) => {
 
   const toggleFullScreen = () => {
     fullScreen ? setFullScreen(false) : setFullScreen(true);
+    if (fullScreen) {
+      setFullScreen(false);
+      setWidthValue(logseq.settings.defaultWidth);
+    } else {
+      setFullScreen(true);
+      setWidthValue(100);
+    }
   };
 
   const changeWidth = (opt: string) => {
@@ -50,7 +57,7 @@ const App = (props: { state: boolean; preferredThemeMode: string }) => {
     <div className="flex justify-center overflow-scroll ">
       <Paper>
         <div
-          style={{ width: `${widthValue}px` }}
+          style={{ width: `${widthValue}${fullScreen ? "%" : "px"}` }}
           className={`calWrapper absolute top-0 right-0 ${
             props.preferredThemeMode === "dark" ? "bg-black" : "bg-white"
           } rounded-lg p-3 border
