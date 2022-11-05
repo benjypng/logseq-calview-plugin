@@ -70,7 +70,7 @@ export async function mapQueryData() {
   let newQueryArr = [];
 
   for (let i of query) {
-    const uuid = i[0]["uuid"]["$uuid$"];
+    const uuid = i[0]["uuid"];
     const blk = await logseq.Editor.getBlock(uuid, {
       includeChildren: true,
     });
