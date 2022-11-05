@@ -19,10 +19,10 @@ const Calendar = (props: {
   currentDateChange: any;
 }) => {
   const { schedulerData, currentDate, currentDateChange } = props;
-  const { startDayHour, endDayHour } = logseq.settings;
+  const { startDayHour, endDayHour, firstDayOfWeek } = logseq.settings;
 
   return (
-    <Scheduler data={schedulerData}>
+    <Scheduler data={schedulerData} firstDayOfWeek={firstDayOfWeek}>
       <ViewState
         currentDate={currentDate}
         onCurrentDateChange={currentDateChange}
