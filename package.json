@@ -1,47 +1,56 @@
 {
+  "name": "logseq-calview-plugin",
+	"author": "hkgnp",
+  "description": "Simple app to show day-specific activities. Recommended to be used with the logseq-datenlp-plugin.",
+  "license": "MIT",
   "logseq": {
     "id": "logseq-calview-plugin",
     "title": "logseq-calview-plugin",
-    "icon": "./icon.svg"
-  },
-  "name": "logseq-calview-plugin",
-  "version": "1.5.0",
-  "description": "",
-  "main": "dist/index.html",
-  "targets": {
-    "main": false
+    "icon": "./icon.svg",
+		"main": "dist/index.html"
   },
   "scripts": {
-    "build": "rm -R dist && echo 'dist folder removed'; postcss src/tailwind.css -o src/App.css && parcel build --no-source-maps src/index.html --public-url ./"
+    "start:dev": "npm i @logseq/libs -S && npm i @types/eslint @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-prettier prettier vite vite-plugin-logseq -D",
+    "dev": "npx vite",
+    "build": "npx tsc && npx vite build",
+    "preview": "npx vite preview"
   },
-  "keywords": [],
-  "author": "hkgnp",
-  "license": "MIT",
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            "logseq-todoist-plugin.zip"
+          ]
+        }
+      ]
+    ]
+  },
   "dependencies": {
-    "@devexpress/dx-react-core": "^3.0.2",
-    "@devexpress/dx-react-scheduler": "^3.0.2",
-    "@devexpress/dx-react-scheduler-material-ui": "^3.0.6",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@logseq/libs": "^0.0.6",
-    "@mui/icons-material": "^5.8.0",
-    "@mui/lab": "^5.0.0-alpha.51",
-    "@mui/material": "^5.8.0",
-    "@mui/styles": "^5.8.0",
-    "@mui/x-date-pickers": "^5.0.7",
-    "cssnano": "^5.1.14",
-    "dayjs": "^1.11.2",
-    "postcss": "^8.4.18",
-    "postcss-cli": "^9.1.0",
-    "postcss-import": "^14.1.0",
-    "react": "^17.0.2",
-    "react-datepicker": "^4.8.0",
-    "react-dom": "^17.0.2",
-    "tailwindcss": "^3.0.24"
+    "@logseq/libs": "^0.0.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
+
   "devDependencies": {
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^18.0.8",
-    "parcel": "^2.7.0"
+    "@tailwindcss/forms": "^0.5.6",
+    "@types/eslint": "^8.44.2",
+    "@types/node": "^18.17.13",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "autoprefixer": "^10.4.15",
+    "cssnano": "^6.0.1",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "postcss": "^8.4.29",
+    "prettier": "3.0.3",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.9",
+    "vite-plugin-logseq": "^1.1.2"
   }
 }
