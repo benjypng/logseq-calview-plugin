@@ -1,61 +1,30 @@
 import "@logseq/libs";
+import { createRoot } from "react-dom/client";
+
 import { handleClosePopup } from "./handleClosePopup";
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import "./App.css";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { callSettings } from "./callSettings";
+import { CalendarApp } from "./CalendarApp";
 
 const main = async () => {
   console.log("logseq-calview-plugin loaded.");
 
   handleClosePopup();
 
-  callSettings();
-
   window.setTimeout(async () => {
     const userConfigs = await logseq.App.getUserConfigs();
-
     logseq.updateSettings({
       preferredDateFormat: userConfigs.preferredDateFormat,
       preferredThemeMode: userConfigs.preferredThemeMode,
     });
-
     console.log(
-      `Settings updated to ${userConfigs.preferredDateFormat} and theme mode is ${userConfigs.preferredThemeMode}`
+      `Settings updated to ${userConfigs.preferredDateFormat} and theme mode is ${userConfigs.preferredThemeMode}`,
     );
   }, 1000);
 
-  // Hackish way to get calendar to re-render when there are new events - Part 1
-  let state = false;
   logseq.provideModel({
     async show() {
-      const setTheme = createTheme({
-        palette: {
-          mode: logseq.settings.preferredThemeMode,
-        },
-      });
-
-      // Hackish way to get calendar to re-render when there are new events - Part 2
-      if (state === false) {
-        state = true;
-      } else {
-        state = false;
-      }
-
-      ReactDOM.render(
-        <React.StrictMode>
-          <ThemeProvider theme={setTheme}>
-            <App
-              state={state}
-              preferredThemeMode={logseq.settings.preferredThemeMode}
-            />
-          </ThemeProvider>
-        </React.StrictMode>,
-        document.getElementById("app")
+      createRoot(document.getElementById("app") as HTMLElement).render(
+        <CalendarApp />,
       );
-
       logseq.showMainUI();
     },
   });
