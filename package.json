@@ -24,7 +24,7 @@
         "@semantic-release/github",
         {
           "assets": [
-            "logseq-todoist-plugin.zip"
+            "logseq-calview-plugin.zip"
           ]
         }
       ]
