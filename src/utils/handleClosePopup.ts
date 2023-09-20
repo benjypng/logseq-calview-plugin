@@ -14,7 +14,7 @@ export const handleClosePopup = () => {
   // Click
   document.addEventListener("click", (e) => {
     //@ts-ignore
-    if (!(e.target as HTMLElement).closest(".container")) {
+    if (!(e.target as HTMLElement).closest(".calApp")) {
       logseq.hideMainUI({ restoreEditingCursor: true });
     }
     e.stopPropagation();
