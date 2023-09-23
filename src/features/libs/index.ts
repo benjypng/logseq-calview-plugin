@@ -31,6 +31,8 @@ export const findEvents = async (): Promise<EventObject[] | undefined> => {
   const query = await logseq.DB.datascriptQuery(`[
         :find (pull ?b [*])
         :where
+               [?b :block/page ?page]
+               [?page :block/journal? true]
                [?b :block/parent ?parent]
                [?b :block/properties ?p]
                [(get ?p :start-time) ?ty]
