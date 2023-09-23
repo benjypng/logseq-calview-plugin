@@ -43,7 +43,7 @@ export const findEvents = async (): Promise<EventObject[] | undefined> => {
     if (!q[0]) throw new Error("No blocks found in query");
 
     const page = await logseq.Editor.getPage(q[0].page.id);
-    if (!page || !page.journalDay) throw new Error("No page found");
+    if (!page || !page.journalDay) continue;
 
     if (page.journalDay) {
       queryArr.push({
